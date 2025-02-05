@@ -7,8 +7,9 @@ function App() {
   const [isPaused, setIsPaused] = useState(false);
   const [isBeeping, setIsBeeping] = useState(false);
   const [inputTime, setInputTime] = useState(5);
-  const [beepContext, setBeepContext] = useState(null);
   const [theme, setTheme] = useState("light");
+  const bellSound = new Audio("https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg");
+
 
   useEffect(() => {
     let timer;
@@ -16,8 +17,7 @@ function App() {
       timer = setInterval(() => setTime((prevTime) => prevTime - 1), 1000);
     } else if (time === 0 && !isBeeping) {
       setIsActive(false);
-      startBeep();
-      setTimeout(stopBeep, 3000); // Stop beeping after 5 seconds
+      playBell();
     }
     return () => clearInterval(timer);
   }, [isActive, time, isPaused]);
@@ -27,13 +27,13 @@ function App() {
     setIsActive(true);
     setIsPaused(false);
     setIsBeeping(false);
-    stopBeep();
+    stopBell();
   };
 
   const handleStop = () => {
     setIsActive(false);
     setIsPaused(false);
-    stopBeep();
+    stopBell();
     setTime(inputTime); // Reset timer back to the input value
   };
 
@@ -45,36 +45,19 @@ function App() {
     setIsPaused(false);
   };
 
-  const startBeep = () => {
-    const beep = new AudioContext();
-    const oscillator = beep.createOscillator();
-    const gainNode = beep.createGain();
-
-    oscillator.type = "square";
-    oscillator.frequency.setValueAtTime(1000, beep.currentTime);
-    gainNode.gain.setValueAtTime(0.1, beep.currentTime);
-    oscillator.connect(gainNode);
-    gainNode.connect(beep.destination);
-
-    oscillator.start();
-    oscillator.loop = true;
-
-    setBeepContext({ beep, oscillator });
+  const playBell = () => {
+    bellSound.play();
     setIsBeeping(true);
   };
 
-  const stopBeep = () => {
-    if (beepContext) {
-      const { beep, oscillator } = beepContext;
-      oscillator.stop();
-      beep.close();
-      setBeepContext(null);
-      setIsBeeping(false);
-    }
+  const stopBell = () => {
+    bellSound.pause();
+    bellSound.currentTime = 0;
+    setIsBeeping(false);
   };
 
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
   const calculateProgress = () => (time / inputTime) * 100;
@@ -173,6 +156,13 @@ function App() {
               Toggle Theme
             </button>
           </div>
+          {isBeeping && (
+            <div className="mt-4">
+              <button className="btn btn-dark" onClick={stopBell}>
+                Stop Bell
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
