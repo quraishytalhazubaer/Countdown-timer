@@ -8,6 +8,7 @@ function App() {
   const [isBeeping, setIsBeeping] = useState(false);
   const [inputTime, setInputTime] = useState(5);
   const [beepContext, setBeepContext] = useState(null);
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     let timer;
@@ -16,6 +17,7 @@ function App() {
     } else if (time === 0 && !isBeeping) {
       setIsActive(false);
       startBeep();
+      setTimeout(stopBeep, 3000); // Stop beeping after 5 seconds
     }
     return () => clearInterval(timer);
   }, [isActive, time, isPaused]);
@@ -71,8 +73,14 @@ function App() {
     }
   };
 
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
+  const calculateProgress = () => (time / inputTime) * 100;
+
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
+    <div className={`d-flex justify-content-center align-items-center vh-100 ${theme}`}>
       <div className="card p-4 shadow-lg" style={{ width: "600px" }}>
         <div className="card-body text-center">
           <h1 className="mb-4">Countdown Timer</h1>
@@ -86,27 +94,84 @@ function App() {
             />
             <span className="mx-2">seconds</span>
           </div>
-          <div className="mb-4">
-            <h2>{time}s</h2>
+          <div className="mb-4 position-relative">
+            <svg width="200" height="200" className="progress-circle">
+              <circle
+                cx="100"
+                cy="100"
+                r="90"
+                stroke="#e0e0e0"
+                strokeWidth="10"
+                fill="none"
+              />
+              <circle
+                cx="100"
+                cy="100"
+                r="90"
+                stroke="#007bff"
+                strokeWidth="10"
+                fill="none"
+                strokeDasharray="565.48"
+                strokeDashoffset={(565.48 * (100 - calculateProgress())) / 100}
+                style={{ transition: "stroke-dashoffset 0.5s linear" }}
+              />
+            </svg>
+            <h2 className="position-absolute top-50 start-50 translate-middle">{time}s</h2>
           </div>
-          <div>
-            <button className="btn btn-success me-2" onClick={handleStart} disabled={isActive}>
+          <div className="mb-4">
+            <button
+              className="btn btn-success me-2"
+              onClick={handleStart}
+              disabled={isActive}
+            >
               Start
             </button>
-            <button className="btn btn-danger me-2" onClick={handleStop} disabled={!isActive}>
+            <button
+              className="btn btn-danger me-2"
+              onClick={handleStop}
+              disabled={!isActive}
+            >
               Stop
             </button>
-            <button className="btn btn-warning me-2" onClick={handlePause} disabled={isPaused || !isActive}>
+            <button
+              className="btn btn-warning me-2"
+              onClick={handlePause}
+              disabled={isPaused || !isActive}
+            >
               Pause
             </button>
-            <button className="btn btn-primary me-2" onClick={handleResume} disabled={!isPaused}>
+            <button
+              className="btn btn-primary me-2"
+              onClick={handleResume}
+              disabled={!isPaused}
+            >
               Resume
             </button>
-            {isBeeping && (
-              <button className="btn btn-dark" onClick={stopBeep}>
-                Stop Beep
-              </button>
-            )}
+          </div>
+          <div>
+            <button
+              className="btn btn-outline-secondary me-2"
+              onClick={() => setInputTime((prev) => prev + 30)}
+            >
+              +30s
+            </button>
+            <button
+              className="btn btn-outline-secondary me-2"
+              onClick={() => setInputTime((prev) => prev + 60)}
+            >
+              +1m
+            </button>
+            <button
+              className="btn btn-outline-secondary"
+              onClick={() => setInputTime((prev) => prev + 300)}
+            >
+              +5m
+            </button>
+          </div>
+          <div className="mt-4">
+            <button className="btn btn-dark" onClick={toggleTheme}>
+              Toggle Theme
+            </button>
           </div>
         </div>
       </div>
