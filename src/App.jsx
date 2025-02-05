@@ -64,13 +64,13 @@ function App() {
 
   return (
     <div className={`d-flex justify-content-center align-items-center vh-100 ${theme}`}>
-      <div className="card p-4 shadow-lg" style={{ width: "600px" }}>
+      <div className={`card p-4 shadow-lg ${theme}`} style={{ width: "600px" }}>
         <div className="card-body text-center">
           <h1 className="mb-4">Countdown Timer</h1>
           <div className="mb-4">
             <input
               type="number"
-              className="form-control d-inline-block w-auto"
+              className={`form-control d-inline-block w-auto ${theme}`}
               value={inputTime}
               onChange={(e) => setInputTime(Number(e.target.value))}
               min="1"
