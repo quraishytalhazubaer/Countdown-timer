@@ -53,12 +53,12 @@ countdown-timer/
 - Open your browser at http://localhost:3000
 - Set your desired countdown duration using the input field.
 - Control the timer using the buttons:
- 1. *Start*: Begins the countdown.
- 2. *Pause*: Temporarily halts the countdown.
- 3. *Resume*: Continues the countdown.
- 4. *Stop*: Stops and resets the timer.
- 5. Enjoy a bell sound at the end of the countdown (with an option to manually stop it).
- 6. Use the theme toggle button to switch between light and dark modes.
+  1. **Start**: Begins the countdown.
+  2. **Pause**: Temporarily halts the countdown.
+  3. **Resume**: Continues the countdown.
+  4. **Stop**: Stops and resets the timer.
+  5. Enjoy a bell sound at the end of the countdown (with an option to manually stop it).
+  6. Use the theme toggle button to switch between light and dark modes.
 
 ## Commands Summary
 | Command	            | Purpose                        |
