@@ -9,9 +9,6 @@ This project is a simple and interactive countdown timer built using React. It f
 - 📱 Fully responsive design using Bootstrap
 
 
-## Interface
-![User Interface ](./src/assets/Screenshot_Interface.png)
-
 ## Getting Started
 ### 1. Fork the Repository
 To get started, fork this repository to your GitHub account by clicking the Fork button on the top right of this page.
@@ -82,3 +79,6 @@ npm run build
 
 ## Contributing
 If you'd like to contribute, please fork the repository and submit a pull request.
+
+## Interface
+![User Interface ](./src/assets/Screenshot_Interface.png)
