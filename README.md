@@ -1,4 +1,4 @@
-#Countdown Timer App with Theme Toggle and Bell Sound
+# Countdown Timer App with Theme Toggle and Bell Sound
 
 This project is a simple and interactive countdown timer built using React. It features customizable countdown duration, a bell sound upon completion, and a light/dark theme toggle.
 
