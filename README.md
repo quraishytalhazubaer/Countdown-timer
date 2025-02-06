@@ -46,9 +46,11 @@ Project Structure
 countdown-timer/
 ├── public/
 ├── src/
-│   ├── App.js
+│   ├── App.jsx
 │   ├── index.css
-│   ├── index.js
+│   ├── main.jsx
+│   ├── App.css
+├── index.html
 └── package.json
 ```
 
