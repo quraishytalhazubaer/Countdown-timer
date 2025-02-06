@@ -13,21 +13,15 @@ This project is a simple and interactive countdown timer built using React. It f
 ### 1. Fork the Repository
 To get started, fork this repository to your GitHub account by clicking the Fork button on the top right of this page.
 
-### 2. Clone the Repository
-After forking, clone the project to your local system:
-
-```bash
-git clone https://github.com/your-username/project-name.git
-cd project-name
-```
 
 ## Project Setup
 
-### 1. Initialize a New React Project (If Starting from Scratch)
-``` bash
+### 1. Clone the Repository
+After forking, clone the project to your local system:
 
-npx create-react-app countdown-timer
-cd countdown-timer
+```bash
+git clone https://github.com/quraishytalhazubaer/Countdown-timer.git
+cd Countdown-timer
 ```
 
 ### 2. Install Bootstrap
@@ -36,6 +30,7 @@ To style the project with Bootstrap, install it using:
 ```bash
 npm install bootstrap
 ```
+
 ### 3. Start the Development Server
 Run the following command to launch the project:
 
