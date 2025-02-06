@@ -74,8 +74,8 @@ To deploy your app, run:
 npm run build
 ```
 ## Future Improvements
-🔧 Customizable alert sounds
-💡 Custom themes
+- 🔧 Customizable alert sounds
+- 💡 Custom themes
 
 ## Contributing
 If you'd like to contribute, please fork the repository and submit a pull request.
