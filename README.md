@@ -61,7 +61,7 @@ countdown-timer/
   6. Use the theme toggle button to switch between light and dark modes.
 
 ## Commands Summary
-| Command	            | Purpose                        |
+| Command	              | Purpose                        |
 |-----------------------|--------------------------------|
 | npx create-react-app	| Create a new React project     |
 | npm install bootstrap	| Install Bootstrap for styling  |
