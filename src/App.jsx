@@ -63,6 +63,17 @@ function App() {
     setIsBeeping(false);
   };
 
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputTime(value);
+    setTime(parseTimeInput(value));
+  };
+  
+  const calculateProgress = () => {
+    const totalSeconds = parseTimeInput(inputTime);
+    return totalSeconds === 0 ? 0 : (time / totalSeconds) * 100;
+  };
+  
   const formatTime = (seconds) => {
     const hrs = String(Math.floor(seconds / 3600)).padStart(2, "0");
     const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
@@ -78,8 +89,6 @@ function App() {
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
-
-  const calculateProgress = () => (time / inputTime) * 100;
 
   const addSecondsToInputTime = (secondsToAdd) => {
     const totalSeconds = parseTimeInput(inputTime) + secondsToAdd;
@@ -122,7 +131,7 @@ function App() {
               type="text"
               className={`form-control d-inline-block w-auto text-center ${theme}`}
               value={inputTime}
-              onChange={(e) => setInputTime(e.target.value)}
+              onChange={handleInputChange}
               placeholder="HH:MM:SS"
             />            
           </div>
